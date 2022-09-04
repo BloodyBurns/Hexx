@@ -48,7 +48,6 @@ Library.SetGyro = function(Part, CF)
 end
 
 Library.Clean = function()
-    Library.Notify('Automatically clean all tools', 4)
     local rbx;rbx = game:GetService('Players').LocalPlayer.Backpack.ChildAdded:Connect(function(Obj)
         game:GetService('RunService').RenderStepped:Wait()
         for _, v in next, Obj:GetDescendants() do
