@@ -5,6 +5,16 @@ Library.Vel = function(Part, Vel)
     end
 end
 
+Library.AutoVel = function(Part, Vel)
+    if Part:IsA('BasePart') and type(Vel) == 'vector' then
+        local rbx;rbx = game:GetService('RunService').Heartbeat:Connect(function()
+            if Part or rbx:Disconnect() then
+                v.Velocity = Vel
+            end
+        end)
+    end
+end
+
 Library.Create = function(Class, Part, info)
     if Part:IsA('BasePart') and type(info) == 'table' then
         if Class:lower() == 'gyro' or Class:lower() == 'bodygyro' then
