@@ -1,30 +1,4 @@
 local Library = {}
-Library.Notify = function(Message, Type, Length)
-    local Course = game:GetObjects('rbxassetid://10580996692')[1]
-    if not game:GetService('CoreGui'):FindFirstChild('Hexx') then
-        Course.Parent = game:GetService('CoreGui')
-        Course.Commands:Destroy()
-        Course.Main:Destroy()
-    end
-
-    spawn(function()
-        local Length = tonumber(Type) or tonumber(Length) or 3
-        local Notification = Course.Notifications[' '].Notification:Clone()
-        local Types = {
-            error = Color3.fromRGB(220, 0, 0),
-            warn = Color3.fromRGB(255, 255, 50),
-            default = Color3.fromRGB(255, 255, 255),
-        }
-
-        Notification.Parent = game:GetService('CoreGui').Hexx.Notifications
-        Notification.Display.Label.Text = tostring(Message) or 'nil'
-        Notification.T1.T1.BackgroundColor3 = Types[tostring(Type):lower()] or Types.default
-        Notification.T1.T1:TweenSize(UDim2.new(0, 0, 1, 0), 'Out', 'Linear', Length)
-        wait(Length)
-        Notification:Destroy()
-    end)
-end
-
 Library.Vel = function(Part, Vel)
     if Part:IsA('BasePart') and type(Vel) == 'vector' then
         Part.Velocity = Vel
