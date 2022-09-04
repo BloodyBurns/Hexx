@@ -3,11 +3,8 @@ Library.Notify = function(Message, Type, Length)
     local Course = game:GetObjects('rbxassetid://10580996692')[1]
     if not game:GetService('CoreGui'):FindFirstChild('Hexx') then
         Course.Parent = game:GetService('CoreGui')
-        for _, v in next, Course:GetChildren() do
-            if v.Name ~= 'Notifications' then
-                v:Destroy()
-            end
-        end
+        Course.CommandsList:Destroy()
+        Course.Main:Destroy()
     end
 
     spawn(function()
