@@ -3,7 +3,7 @@ Library.Notify = function(Message, Type, Length)
     local Course = game:GetObjects('rbxassetid://10580996692')[1]
     if not game:GetService('CoreGui'):FindFirstChild('Hexx') then
         Course.Parent = game:GetService('CoreGui')
-        Course.CommandsList:Destroy()
+        Course.Commands:Destroy()
         Course.Main:Destroy()
     end
 
@@ -26,13 +26,13 @@ Library.Notify = function(Message, Type, Length)
 end
 
 Library.Vel = function(Part, Vel)
-    if Part:IsA('BasePart') and type(Vel) == 'vector' or Library.Notify('Invalid Arguments (Vel)', 'error', 4) then
+    if Part:IsA('BasePart') and type(Vel) == 'vector' or warn(debug.traceback('Velocity', 2))  then
         Part.Velocity = Vel
     end
 end
 
 Library.Create = function(Class, Part, info)
-    if Part:IsA('BasePart') and type(info) == 'table' or Library.Notify('Invalid Arguments (Create)', 'error', 4) then
+    if Part:IsA('BasePart') and type(info) == 'table' or warn(debug.traceback('Create', 2))  then
         if Class:lower() == 'gyro' or Class:lower() == 'bodygyro' then
             if Part:FindFirstChildOfClass('BodyGyro') then
                 Part:FindFirstChildOfClass('BodyGyro'):Destroy()
@@ -62,13 +62,13 @@ Library.Create = function(Class, Part, info)
 end
 
 Library.SetPosition = function(Part, Vec)
-    if Part and Part:IsA('BasePart') and Part:FindFirstChildWhichIsA('BodyPosition') and type(Vec) == 'vector' or Library.Notify('Invalid Arguments (SetPosition)', 'error', 4) then
+    if Part and Part:IsA('BasePart') and Part:FindFirstChildWhichIsA('BodyPosition') and type(Vec) == 'vector' or warn(debug.traceback('SetPosition', 2)) then
         Part:FindFirstChildWhichIsA('BodyPosition').Position = Vec
     end
 end
 
 Library.SetGyro = function(Part, CF)
-    if Part and Part:IsA('BasePart') and Part:FindFirstChildOfClass('BodyGyro') and type(CF) == 'userdata' or Library.Notify('Invalid Arguments (SetGyro)', 'error', 4) then
+    if Part and Part:IsA('BasePart') and Part:FindFirstChildOfClass('BodyGyro') and type(CF) == 'userdata' or warn(debug.traceback('SetGyro', 2))  then
         Part:FindFirstChildOfClass('BodyGyro').CFrame = CF
     end
 end
@@ -76,6 +76,7 @@ end
 Library.Clean = function()
     local rbx;rbx = game:GetService('Players').LocalPlayer.Backpack.ChildAdded:Connect(function(Obj)
         game:GetService('RunService').RenderStepped:Wait()
+        Library.Notify('Cleaned all Tools.', 4)
         for _, v in next, Obj:GetDescendants() do
             if v:IsA('BodyPosition') or v:IsA('BodyGyro') then
                 v:Destroy()
