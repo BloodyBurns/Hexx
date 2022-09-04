@@ -26,13 +26,13 @@ Library.Notify = function(Message, Type, Length)
 end
 
 Library.Vel = function(Part, Vel)
-    if Part:IsA('BasePart') and type(Vel) == 'vector' or warn(debug.traceback('Velocity', 2))  then
+    if Part:IsA('BasePart') and type(Vel) == 'vector' then
         Part.Velocity = Vel
     end
 end
 
 Library.Create = function(Class, Part, info)
-    if Part:IsA('BasePart') and type(info) == 'table' or warn(debug.traceback('Create', 2))  then
+    if Part:IsA('BasePart') and type(info) == 'table' then
         if Class:lower() == 'gyro' or Class:lower() == 'bodygyro' then
             if Part:FindFirstChildOfClass('BodyGyro') then
                 Part:FindFirstChildOfClass('BodyGyro'):Destroy()
@@ -62,21 +62,21 @@ Library.Create = function(Class, Part, info)
 end
 
 Library.SetPosition = function(Part, Vec)
-    if Part and Part:IsA('BasePart') and Part:FindFirstChildWhichIsA('BodyPosition') and type(Vec) == 'vector' or warn(debug.traceback('SetPosition', 2)) then
+    if Part and Part:IsA('BasePart') and Part:FindFirstChildWhichIsA('BodyPosition') and type(Vec) == 'vector' then
         Part:FindFirstChildWhichIsA('BodyPosition').Position = Vec
     end
 end
 
 Library.SetGyro = function(Part, CF)
-    if Part and Part:IsA('BasePart') and Part:FindFirstChildOfClass('BodyGyro') and type(CF) == 'userdata' or warn(debug.traceback('SetGyro', 2))  then
+    if Part and Part:IsA('BasePart') and Part:FindFirstChildOfClass('BodyGyro') and type(CF) == 'userdata' then
         Part:FindFirstChildOfClass('BodyGyro').CFrame = CF
     end
 end
 
 Library.Clean = function()
+    Library.Notify('Automatically clean all tools', 4)
     local rbx;rbx = game:GetService('Players').LocalPlayer.Backpack.ChildAdded:Connect(function(Obj)
         game:GetService('RunService').RenderStepped:Wait()
-        Library.Notify('Cleaned all Tools.', 4)
         for _, v in next, Obj:GetDescendants() do
             if v:IsA('BodyPosition') or v:IsA('BodyGyro') then
                 v:Destroy()
