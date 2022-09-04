@@ -9,7 +9,7 @@ Library.AutoVel = function(Part, Vel)
     if Part:IsA('BasePart') and type(Vel) == 'vector' then
         local rbx;rbx = game:GetService('RunService').Heartbeat:Connect(function()
             if Part or rbx:Disconnect() then
-                v.Velocity = Vel
+                Part.Velocity = Vel
             end
         end)
     end
