@@ -1,6 +1,7 @@
 local Library = {}
 local FirstWindow = nil
 local Core = game:GetService('CoreGui')
+local Drag = loadstring(game:HttpGet('https://pastebin.com/raw/TBqptCxV'))()
 function Library:Load(Name)
 	if Core:FindFirstChild('IvAdminLib') then
 		Core.IvAdminLib:Destroy()
@@ -13,6 +14,7 @@ function Library:Load(Name)
 
 	UI.Parent = Core
 	UI.Frame.Top.Label.Text = Name
+	Drag(UI.Frame, 25, true)
 end
 
 function Library:Notify(Text, Length)
