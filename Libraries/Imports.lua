@@ -71,7 +71,7 @@ random = math.random;
 
 -- // Custom Functions
 isType = function(a, b)
-    return type(a) == toSt(b);
+    return type(a) == toStr(b);
 end
 
 JSON = function(Type, Data)
