@@ -15,6 +15,7 @@ Lighting = game:GetService('Lighting');
 RunService = game:GetService('RunService');
 StarterGui = game:GetService('StarterGui');
 StarterPack = game:GetService('StarterPack');
+HttpService = game:GetService('HttpService');
 SoundService = game:GetService('SoundService');
 StarterPlayer = game:GetService('StarterPlayer');
 ReplicatedStorage = game:GetService('ReplicatedStorage');
