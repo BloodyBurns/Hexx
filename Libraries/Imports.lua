@@ -1,5 +1,11 @@
+-- // URL: https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua
+-- // Loadstring: loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))();
+
 -- // Local Player
 plr = game:GetService('Players').LocalPlayer;
+
+-- // Request
+request = ((syn or http) and (syn and syn.request) or http.request or http_request or request);
 
 -- // Services
 Chat = game:GetService('Chat');
