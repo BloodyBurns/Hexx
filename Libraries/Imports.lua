@@ -5,7 +5,7 @@
 plr = game:GetService('Players').LocalPlayer;
 
 -- // Request
-request = ((syn or http) and (syn and syn.request) or http.request or http_request or request);
+request = (((syn or http) and (syn and syn.request) or http.request) or http_request or request);
 
 -- // Services
 Chat = game:GetService('Chat');
