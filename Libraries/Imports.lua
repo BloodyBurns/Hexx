@@ -21,6 +21,12 @@ StarterPlayer = game:GetService('StarterPlayer');
 ReplicatedStorage = game:GetService('ReplicatedStorage');
 MarketplaceService = game:GetService('MarketplaceService');
 
+-- // Random Variables
+ChatEvents = ReplicatedStorage:FindFirstChild('DefaultChatSystemChatEvents');
+ChatRemote = ChatEvents and ChatEvents.SayMessageRequest;
+MuteRemote = ChatEvents and ChatEvents.MutePlayerRequest;
+UnMuteRemote = ChatEvents and ChatEvents.UnMutePlayerRequest;
+
 -- // RS Events
 Stepped = RunService.Stepped;
 Heartbeat = RunService.Heartbeat;
