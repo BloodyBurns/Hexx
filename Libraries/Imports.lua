@@ -97,7 +97,6 @@ isIndexOf = function(Data, Value)
     end
 end
 
-
 isIndexType = function(Data, Value)
     if isType(Data, 'table') then
         for _, v in next, Data do
@@ -109,15 +108,8 @@ isIndexType = function(Data, Value)
     end
 end
 
-isIndexType = function(Data, Value)
-    if isType(Data, 'table') then
-        for _, v in next, Data do
-            if toStr(v) == toStr(Value) then
-                return _;
-            end
-        end
-        return nil;
-    end
+GetObjs = function(Asset)
+    return game:GetObjects(format('rbxassetid://%d'), toNum(Asset));
 end
 
 filter = function(Data, Excluded)
