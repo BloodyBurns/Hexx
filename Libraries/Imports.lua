@@ -109,7 +109,7 @@ isIndexType = function(Data, Value)
 end
 
 GetObjs = function(Asset)
-    return game:GetObjects(format('rbxassetid://%d'), toNum(Asset));
+    return game:GetObjects(format('rbxassetid://%d', toNum(Asset)));
 end
 
 filter = function(Data, Excluded)
