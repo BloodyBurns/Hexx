@@ -118,7 +118,7 @@ filter = function(Data, Excluded)
     if isType(Data, 'table') then
         local filtered = {}; do
             for _, v in next, Data do
-                if isType(Excluded, 'table') and not find(Excluded, v) or not isType(Excluded, 'table') v ~= Excluded then
+                if isType(Excluded, 'table') and not find(Excluded, v) or not isType(Excluded, 'table') and v ~= Excluded then
                     insert(filtered, v);
                 end
             end
