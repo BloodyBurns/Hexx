@@ -18,6 +18,7 @@ StarterPack = game:GetService('StarterPack');
 HttpService = game:GetService('HttpService');
 SoundService = game:GetService('SoundService');
 StarterPlayer = game:GetService('StarterPlayer');
+InputService = game:GetService('UserInputService');
 ReplicatedStorage = game:GetService('ReplicatedStorage');
 MarketplaceService = game:GetService('MarketplaceService');
 
@@ -70,6 +71,7 @@ cos = math.cos;
 sin = math.sin;
 abs = math.abs;
 min = math.min;
+log = math.log;
 sqrt = math.sqrt;
 clamp = math.clamp;
 floor = math.floor;
