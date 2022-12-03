@@ -1,4 +1,4 @@
--- // Iv Library v2
+-- // Iv Hubv2
 local Library = {};
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))(); -- // Import
@@ -48,6 +48,15 @@ Library['Load'] = function(self, Remove)
 
         insert(Tabs, Tab);
         insert(Windows, Window);
+
+        for _, v in next, Windows do
+            v.Visible = (v == Window);
+        end
+
+        for _, v in next, Tabs do
+            v.BackgroundTransparency = (v == Tab and 0) or 1;
+        end
+
         Tab.Text = Window_Name;
         Window.Parent = UI.Frame.Main;
         Tab.Parent = UI.Frame.Side.Tabs;
