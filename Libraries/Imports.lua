@@ -147,11 +147,11 @@ Randomize = function(Data, Excluded)
         local newOutput = {}; do
             for _, v in next, Data do
                 if Excluded and filter(Data, Excluded) or true then
-                    insert(newOuput, v);
+                    insert(newOutput, v);
                 end
             end
         end
-        return newOuput[random(1, maxn(newOuput))];
+        return newOutput[random(1, maxn(newOutput))];
     end
 end
 
