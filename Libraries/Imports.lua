@@ -78,6 +78,10 @@ floor = math.floor;
 random = math.random;
 
 -- // Custom Functions
+pfp = function(id)
+	return plrs:GetUserThumbnailAsync(id, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420);
+end
+
 isType = function(a, b)
     return type(a) == toStr(b);
 end
