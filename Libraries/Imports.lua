@@ -210,3 +210,7 @@ Save = function(Type, Table)
 		end
 	end
 end
+
+Drag = function(Frame)
+    loadstring(game:HttpGet('https://pastebin.com/raw/TBqptCxV'))()(Frame);
+end
