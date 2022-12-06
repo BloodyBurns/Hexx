@@ -41,6 +41,7 @@ sort = table.sort;
 clear = table.clear;
 concat = table.concat;
 insert = table.insert;
+remove = table.remove;
 foreach = table.foreach;
 
 -- // String Library
