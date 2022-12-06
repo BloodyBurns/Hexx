@@ -194,26 +194,19 @@ GetCharacter = function(Player, Limb)
     if Player and Limb then
         if Player:FindFirstChild(Limb) then
             Player = Player[Limb];
+            return Player;
         end
+
+        return nil;
     end
 
-    return Limb and toStr(Player) == Limb and Player or Player;
+    return Player;
 end
 
 Save = function(Path, Data)
     if writefile then
         writefile(Path, isType(Data, 'table') and JSON('Encode', Data) or Data);
     end
-end
-
-Save = function(Type, Table)
-    if writefile then
-		if Type == 'Settings' or Type == 'Configs' then
-			writefile(Folder..'/Settings.json', JSON('Encode', Settings))
-		elseif Type == 'PlayersData' or Type == 'Players' then
-			writefile(Folder..'/PlayersData.json', JSON('Encode', PlayersData))
-		end
-	end
 end
 
 Drag = function(Frame)
