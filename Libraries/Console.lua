@@ -2,6 +2,8 @@ if not rconsoleprint then
     return warn('Not Supported');
 end
 
+
+-- // Loadstring: loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Console.lua'))();
 -- // Console
 Loading = false;
 Running = true;
@@ -73,7 +75,7 @@ Console = function(Type, Color, ...)
 
     if Type == 'print' then
         local Args = {...};
-        local Color = Colors[tostring(Color):lower()] or extra('warn', 'yellow', ('Invalid Color Code %s |\tSetting Color to default'):format(tostring(Color))) and Colors['white'];
+        local Color = Colors[tostring(Color):lower()] or extra('warn', 'yellow', {('Invalid Color Code \'%s\' |Setting Color to default'):format(tostring(Color))}) and Colors['white'];
 
         if isSyn or rconsoleprint(table.concat(Args, ' '), Color) then
             rconsoleprint(Color);
