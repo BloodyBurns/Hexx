@@ -27,6 +27,7 @@ ChatEvents = ReplicatedStorage:FindFirstChild('DefaultChatSystemChatEvents');
 ChatRemote = ChatEvents and ChatEvents.SayMessageRequest;
 MuteRemote = ChatEvents and ChatEvents.MutePlayerRequest;
 UnMuteRemote = ChatEvents and ChatEvents.UnMutePlayerRequest;
+OnMessageRemote = ChatEvents and ChatEvents.OnMessageDoneFiltering;
 
 -- // RS Events
 Stepped = RunService.Stepped;
