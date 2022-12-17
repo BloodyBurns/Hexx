@@ -210,6 +210,6 @@ Save = function(Path, Data)
     end
 end
 
-Drag = function(Frame)
-    loadstring(game:HttpGet('https://pastebin.com/raw/TBqptCxV'))()(Frame);
+Drag = function(Frame, Speed)
+    loadstring(game:HttpGet('https://pastebin.com/raw/TBqptCxV'))()(Frame, Speed);
 end
