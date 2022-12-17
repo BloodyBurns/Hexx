@@ -217,6 +217,10 @@ Library['Load'] = function(self, Remove)
             Notification:Destroy()
         end)
     end
+
+    Wv['isDestroyed'] = function(self)
+        return UI;
+    end
     
     return Wv;
 end
