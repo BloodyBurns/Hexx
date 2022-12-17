@@ -1,3 +1,5 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))();
+
 -- // Configs
 local Configs = {
 	NotifyOnJoin = true,
@@ -68,14 +70,14 @@ UI.Playerlist.Expand.MouseButton1Click:Connect(function()
     UI.Playerlist.Frame:TweenSize(not Open and UDim2.new(1, 0, 0.1, 0) or UDim2.new(1, 0, 1, 0), 'InOut', 'Sine', 0.4, true);
 end)
 
-InputService.InputBegan:Connect(function(Input, IsTyping)
+local s1; s1 = InputService.InputBegan:Connect(function(Input, IsTyping)
 	if Input.KeyCode == Enum.KeyCode.Tab and not IsTyping then
         Show = not Show;
         UI.Playerlist:TweenPosition(Show and UDim2.new(0.84, 0, 0, 15) or UDim2.new(1, 0, 0, 15), 'InOut', 'Sine', 0.5, true);
 	end
 end)
 
-plrs.PlayerAdded:Connect(function(v)
+local s2; s2 = plrs.PlayerAdded:Connect(function(v)
 	if Configs.NotifyOnJoin then
 		Notify(format(Configs.NotifyOnFriendJoin and 'Your friend %s has joined!' or '%s has joined', v.DisplayName), 4, pfp(v.UserId));
 	end
@@ -88,7 +90,7 @@ plrs.PlayerAdded:Connect(function(v)
 	UI.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
 end)
 
-plrs.PlayerRemoving:Connect(function(v)
+local s3; s3 = plrs.PlayerRemoving:Connect(function(v)
 	UI.Playerlist.Size = UDim2.new(0, 285, 0, maxn(GetPlayers()) * 47);
 	UI.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
 	if UI.Playerlist.Frame.Players:FindFirstChild(v.Name) then
@@ -102,3 +104,10 @@ Notify('Custom Playerlist!', 4, pfp(plr.UserId));
 for _, v in next, filter(GetPlayers(), plr) do
     spawn(function() CreatePlayer(v, v:isFriendsWith(plr.UserId)) end);
 end
+
+spawn(function()
+	UI:IsDestroying():Wait();
+	Disconnect(s1);
+	Disconnect(s2);
+	Disconnect(s3);
+end)
