@@ -79,9 +79,9 @@ Library['Load'] = function(self, Remove)
         end
 
         Events['CreateButton'] = function(self, Text, Icon, Code)
-            local Icon = type(Icon) ~= 'function' and Icon;
+            local Icon_ = typeof(Icon) ~= 'function' and Icon;
             local Button = Objects.Button:Clone();
-            Button.Icon.Image = Icon or Button.Icon.Image;
+            Button.Icon.Image = Icon_ or Button.Icon.Image;
             Button.Label.Text = Text;
             Button.Parent = Window;
             Button.Button.MouseButton1Click:Connect(function()
@@ -89,32 +89,32 @@ Library['Load'] = function(self, Remove)
                 Button.Effect.Size = UDim2.new(0, 0, 0.98, 0);
                 Button.Effect.Position = UDim2.new(0.5, 0, 0, 0)
 
-                spawn(not Icon and Icon or Code or function() end);
+                spawn(Code or not Icon_ and Icon or function() end);
             end)
         end
 
         Events['CreateInput'] = function(self, Text, Icon, Code)
-            local Icon = typeof(Icon) ~= 'function' and Icon;
+            local Icon_ = typeof(Icon) ~= 'function' and Icon;
             local Input = Objects.Input:Clone();
-            Input.Icon.Image = Icon or Input.Icon.Image;
+            Input.Icon.Image = Icon_ or Input.Icon.Image;
             Input.Label.Text = Text;
             Input.Parent = Window;
             Input.Box.FocusLost:Connect(function()
-                Code = not Icon and Icon or Code or function() end;
+                Code = Code or not Icon_ and Icon or function() end;
                 Code(Input.Box.Text);
             end)
         end
 
         Events['CreateToggle'] = function(self, Text, Icon, Code)
-            local Icon = typeof(Icon) ~= 'function' and Icon;
+            local Icon_ = typeof(Icon) ~= 'function' and Icon;
             local Toggle = Objects.Toggle:Clone();
             local Toggled = false;
 
-            Toggle.Icon.Image = Icon or Toggle.Icon.Image;
+            Toggle.Icon.Image = Icon_ or Toggle.Icon.Image;
             Toggle.Label.Text = Text;
             Toggle.Parent = Window;
             Toggle.Button.MouseButton1Click:Connect(function()
-                Code = not Icon and Icon or Code or function() end;
+                Code = Code or not Icon_ and Icon or function() end;
                 Toggled = not Toggled;
 	
                 Toggle.Icon.Image = Toggled and 'rbxassetid://6031068426' or 'rbxassetid://6031068433';
@@ -126,7 +126,7 @@ Library['Load'] = function(self, Remove)
         end
 
         Events['CreateSlider'] = function(self, Text, Values, Icon, Code)
-            local Icon = typeof(Icon) ~= 'function' and Icon;
+            local Icon_ = typeof(Icon) ~= 'function' and Icon;
             local SliderC = Objects.Slider:Clone();
             local Dragger, Slider = SliderC.bg.Hitbox, SliderC.bg;
             local Output = SliderC.Value;
@@ -135,7 +135,7 @@ Library['Load'] = function(self, Remove)
 
             SliderC.Parent = Window;
             SliderC.Label.Text = Text;
-            SliderC.Icon.Image = Icon or SliderC.Icon.Image;
+            SliderC.Icon.Image = Icon_ or SliderC.Icon.Image;
 
             local RelPos = InputService:GetMouseLocation() - Slider.AbsolutePosition;
             local Precent = clamp(RelPos.X/Slider.AbsoluteSize.X, 0, 1);
@@ -155,7 +155,7 @@ Library['Load'] = function(self, Remove)
 
             InputService.InputChanged:Connect(function()
                 if Dragging then
-                    local Code = not Icon and Icon or Code or function() end;
+                    local Code = Code or not Icon_ and Icon or function() end;
                     local RelPos = InputService:GetMouseLocation() - Slider.AbsolutePosition;
                     local Precent = clamp(RelPos.X/Slider.AbsoluteSize.X, 0, 1);
 
@@ -168,7 +168,7 @@ Library['Load'] = function(self, Remove)
 
         Events['CreateDropdown'] = function(self, Text, Icon, Values)
             local Activated = false;
-            local Icon = typeof(Icon) ~= 'table' and Icon;
+            local Icon_ = typeof(Icon) ~= 'table' and Icon;
             local Menu = Objects.Dropdown:Clone();
             local CreateSelection = function(Text, Code)
                 local Selection = Menu.Menu[' '].Selection:Clone();
@@ -179,11 +179,11 @@ Library['Load'] = function(self, Remove)
                 Selection.Parent = Menu.Menu.Selections;
             end
 
-            for _, v in next, Values do
+            for _, v in next, (Values or Icon) do
                 CreateSelection(v.Text, v.Code);
             end
 
-            Menu.Background.Icon.Image = Icon or Menu.Background.Icon.Image;
+            Menu.Background.Icon.Image = Icon_ or Menu.Background.Icon.Image;
             Menu.Background.Label.Text = Text;
             Menu.Parent = Window;
             Menu.Background.Button.MouseButton1Click:Connect(function()
