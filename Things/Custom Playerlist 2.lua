@@ -1,5 +1,3 @@
-loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))();
-
 -- // Configs
 local Configs = {
 	NotifyOnJoin = true,
@@ -106,7 +104,7 @@ for _, v in next, filter(GetPlayers(), plr) do
 end
 
 spawn(function()
-	UI:IsDestroying():Wait();
+	UI.Destroying:Wait();
 	Disconnect(s1);
 	Disconnect(s2);
 	Disconnect(s3);
