@@ -3,7 +3,7 @@ local Library = {};
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))(); -- // Import
 Library['Load'] = function(self, Remove)
-    if isIndexType(Core:GetChildren(), 'Iv Hubv2') then
+    if Remove and isIndexType(Core:GetChildren(), 'Iv Hubv2') then
         Core['Iv Hubv2']:Destroy();
     end
 
