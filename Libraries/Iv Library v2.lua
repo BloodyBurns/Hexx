@@ -1,9 +1,9 @@
 -- // Iv Hubv2
 local Library = {};
 
+loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))(); -- // Import
 Library['Load'] = function(self, Remove)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))(); -- // Import
-    if Remove and isIndexType(Core:GetChildren(), 'Iv Hubv2') then
+    if isIndexType(Core:GetChildren(), 'Iv Hubv2') then
         Core['Iv Hubv2']:Destroy();
     end
 
@@ -71,14 +71,17 @@ Library['Load'] = function(self, Remove)
             end
         end)
 
-        Events['CreateLabel'] = function(self, Text)
+        Events['CreateLabel'] = function(self, Text, Icon)
             local Label = Objects.Label:Clone();
+            Label.Icon.Image = Icon or Label.Icon.Image;
             Label.Label.Text = Text;
             Label.Parent = Window;
         end
 
-        Events['CreateButton'] = function(self, Text, Code)
+        Events['CreateButton'] = function(self, Text, Icon, Code)
+            local Icon = type(Icon) ~= 'function' and Icon;
             local Button = Objects.Button:Clone();
+            Button.Icon.Image = Icon or Button.Icon.Image;
             Button.Label.Text = Text;
             Button.Parent = Window;
             Button.Button.MouseButton1Click:Connect(function()
@@ -86,28 +89,32 @@ Library['Load'] = function(self, Remove)
                 Button.Effect.Size = UDim2.new(0, 0, 0.98, 0);
                 Button.Effect.Position = UDim2.new(0.5, 0, 0, 0)
 
-                spawn(Code or function() end);
+                spawn(not Icon and Icon or Code or function() end);
             end)
         end
 
-        Events['CreateInput'] = function(self, Text, Code)
+        Events['CreateInput'] = function(self, Text, Icon, Code)
+            local Icon = typeof(Icon) ~= 'function' and Icon;
             local Input = Objects.Input:Clone();
+            Input.Icon.Image = Icon or Input.Icon.Image;
             Input.Label.Text = Text;
             Input.Parent = Window;
             Input.Box.FocusLost:Connect(function()
-                Code = Code or function() end;
+                Code = not Icon and Icon or Code or function() end;
                 Code(Input.Box.Text);
             end)
         end
 
-        Events['CreateToggle'] = function(self, Text, Code)
+        Events['CreateToggle'] = function(self, Text, Icon, Code)
+            local Icon = typeof(Icon) ~= 'function' and Icon;
             local Toggle = Objects.Toggle:Clone();
             local Toggled = false;
 
+            Toggle.Icon.Image = Icon or Toggle.Icon.Image;
             Toggle.Label.Text = Text;
             Toggle.Parent = Window;
             Toggle.Button.MouseButton1Click:Connect(function()
-                Code = Code or function() end;
+                Code = not Icon and Icon or Code or function() end;
                 Toggled = not Toggled;
 	
                 Toggle.Icon.Image = Toggled and 'rbxassetid://6031068426' or 'rbxassetid://6031068433';
@@ -118,7 +125,8 @@ Library['Load'] = function(self, Remove)
             end)
         end
 
-        Events['CreateSlider'] = function(self, Text, Values, Code)
+        Events['CreateSlider'] = function(self, Text, Values, Icon, Code)
+            local Icon = typeof(Icon) ~= 'function' and Icon;
             local SliderC = Objects.Slider:Clone();
             local Dragger, Slider = SliderC.bg.Hitbox, SliderC.bg;
             local Output = SliderC.Value;
@@ -127,6 +135,7 @@ Library['Load'] = function(self, Remove)
 
             SliderC.Parent = Window;
             SliderC.Label.Text = Text;
+            SliderC.Icon.Image = Icon or SliderC.Icon.Image;
 
             local RelPos = InputService:GetMouseLocation() - Slider.AbsolutePosition;
             local Precent = clamp(RelPos.X/Slider.AbsoluteSize.X, 0, 1);
@@ -146,6 +155,7 @@ Library['Load'] = function(self, Remove)
 
             InputService.InputChanged:Connect(function()
                 if Dragging then
+                    local Code = not Icon and Icon or Code or function() end;
                     local RelPos = InputService:GetMouseLocation() - Slider.AbsolutePosition;
                     local Precent = clamp(RelPos.X/Slider.AbsoluteSize.X, 0, 1);
 
@@ -156,8 +166,9 @@ Library['Load'] = function(self, Remove)
             end)
         end
 
-        Events['CreateDropdown'] = function(self, Text, Values)
+        Events['CreateDropdown'] = function(self, Text, Icon, Values)
             local Activated = false;
+            local Icon = typeof(Icon) ~= 'table' and Icon;
             local Menu = Objects.Dropdown:Clone();
             local CreateSelection = function(Text, Code)
                 local Selection = Menu.Menu[' '].Selection:Clone();
@@ -172,6 +183,7 @@ Library['Load'] = function(self, Remove)
                 CreateSelection(v.Text, v.Code);
             end
 
+            Menu.Background.Icon.Image = Icon or Menu.Background.Icon.Image;
             Menu.Background.Label.Text = Text;
             Menu.Parent = Window;
             Menu.Background.Button.MouseButton1Click:Connect(function()
