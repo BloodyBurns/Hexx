@@ -75,14 +75,14 @@ end)
 
 plrs.PlayerAdded:Connect(function(v)
 	if Configs.NotifyOnJoin then
-		Notify(format(Configs.NotifyOnFriendJoin and 'Your friend %s has joined!' or '%s has joined', v.DisplayName), 4, pfp(v.UserId));
+		Notify(format(Configs.NotifyOnFriendJoin and v:IsFriendsWith(plr.UserId) and 'Your friend %s has joined!' or '%s has joined', v.DisplayName), 4, pfp(v.UserId));
 	end
 
 	if not Configs.NotifyOnJoin and Configs.NotifyOnFriendJoin and v:IsFriendsWith(plr.UserId) then
 		Notify(format('Your friend %s has joined!', v.DisplayName), 4, pfp(v.UserId));
 	end
 
-	CreatePlayer(v, v:isFriendsWith(plr.UserId));
+    pcall(function() CreatePlayer(v, v:isFriendsWith(plr.UserId)) end);
 	UI.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
 end)
 
@@ -97,5 +97,5 @@ CreatePlayer(plr, false);
 Notify('Custom Playerlist!', 4, pfp(plr.UserId));
 
 for _, v in next, filter(GetPlayers(), plr) do
-    CreatePlayer(v, v:isFriendsWith(plr.UserId));
+    pcall(function() CreatePlayer(v, v:isFriendsWith(plr.UserId)) end);
 end
