@@ -218,8 +218,8 @@ Library['Load'] = function(self, Remove)
         end)
     end
 
-    Wv['isDestroyed'] = function(self)
-        return UI;
+    Wv['WaitDestroy'] = function(self)
+        return UI.Destroying:Wait();
     end
     
     return Wv;
