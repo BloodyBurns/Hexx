@@ -1,8 +1,8 @@
 -- // Iv Hubv2
 local Library = {};
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))(); -- // Import
 Library['Load'] = function(self, Remove)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main/Libraries/Imports.lua'))(); -- // Import
     if Remove and isIndexType(Core:GetChildren(), 'Iv Hubv2') then
         Core['Iv Hubv2']:Destroy();
     end
