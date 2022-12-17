@@ -8,12 +8,12 @@ local Configs = {
 -- // Custom Playerlist
 local Open, Show = true, true, _c;
 local UI = GetObjs(11837971003);
-local Darken = function(v)
+Darken = function(v)
 	local R, G, B = v.R * 255, v.G * 255, v.B * 255;
 	return Color3.fromRGB(R * 0.5, G * 0.5, B * 0.5);
 end
 
-local Notify = function(Text, Duration, Icon)
+Notify = function(Text, Duration, Icon)
 	spawn(function()
         -- // Settings
         local Text = toStr(Text);
