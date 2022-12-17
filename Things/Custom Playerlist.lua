@@ -2,7 +2,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hexx/main
 
 -- // Configs
 local Configs = {
-	NotifyOnJoin = false,
+	NotifyOnJoin = true,
 	NotifyOnFriendJoin = true,
 	NotificationColor = Color3.fromRGB(255, 0, 0),
 }
