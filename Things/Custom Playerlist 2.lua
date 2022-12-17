@@ -77,7 +77,7 @@ end)
 
 local s2; s2 = plrs.PlayerAdded:Connect(function(v)
 	if Configs.NotifyOnJoin then
-		Notify(format(Configs.NotifyOnFriendJoin and 'Your friend %s has joined!' or '%s has joined', v.DisplayName), 4, pfp(v.UserId));
+		Notify(format(Configs.NotifyOnFriendJoin and v:IsFriendsWith(plr.USerId) and 'Your friend %s has joined!' or '%s has joined', v.DisplayName), 4, pfp(v.UserId));
 	end
 
 	if not Configs.NotifyOnJoin and Configs.NotifyOnFriendJoin and v:IsFriendsWith(plr.UserId) then
