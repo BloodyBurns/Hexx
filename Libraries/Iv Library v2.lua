@@ -7,13 +7,14 @@ Library['Load'] = function(self, Remove)
         Core['Iv Hubv2']:Destroy();
     end
 
+    local MainWindow = nil;
     local Windows, Tabs = {}, {};
     local UI = GetObjs(11709541508);
+    local Objects = UI:FindFirstChildWhichIsA('ObjectValue');
     loadstring(game:HttpGet('https://pastebin.com/raw/TBqptCxV'))()(UI.Frame);
 
     UI.Parent = Core;
-    UI.Frame.Side.Hightlight:Destroy();
-    UI.Frame.Side.Label.Text = format('Iv Hub  |  %s', MarketplaceService:GetProductInfo(game.PlaceId).Name);
+    UI.Frame.Top.Label.Text = format('Iv Hub  |  %s', MarketplaceService:GetProductInfo(game.PlaceId).Name);
     UI.Frame.Top.Exit.MouseButton1Click:Connect(function()
         UI.Enabled = false;
     end)
@@ -30,8 +31,10 @@ Library['Load'] = function(self, Remove)
 
             for _, v in next, CurrentWindow:GetDescendants() do
                 if v:IsA('TextLabel') and v.Name == 'Label' or v:IsA('TextButton') and v.Name == 'Label' then
-                    if v.Text:lower():match(UI.Frame.Top.Search.Text:lower()) then v.Parent.Visible = true else
-                        v.Parent.Visible = false;
+                    if v.Parent.Parent.Name == 'Dropdown' then
+                        v.Parent.Parent.Visible = v.Text:lower():match(UI.Frame.Top.Search.Text:lower());
+                    else
+                        v.Parent.Visible = v.Text:lower():match(UI.Frame.Top.Search.Text:lower());
                     end
                 end
             end
@@ -41,7 +44,6 @@ Library['Load'] = function(self, Remove)
     -- // Window
     local Wv = {};
     Wv['CreateWindow'] = function(self, Window_Name)
-        local Objects = UI:FindFirstChildWhichIsA('ObjectValue');
         local Window = Objects.Window:Clone();
         local Tab = Objects.Tab:Clone();
         local Events = {};
@@ -49,12 +51,11 @@ Library['Load'] = function(self, Remove)
         insert(Tabs, Tab);
         insert(Windows, Window);
 
-        for _, v in next, Windows do
-            v.Visible = (v == Window);
-        end
+        Window.Visible = (not MainWindow);
+        Tab.BackgroundTransparency = (not MainWindow and 0) or 1;
 
-        for _, v in next, Tabs do
-            v.BackgroundTransparency = (v == Tab and 0) or 1;
+        if not MainWindow then
+            MainWindow = true;
         end
 
         Tab.Text = Window_Name;
@@ -76,7 +77,7 @@ Library['Load'] = function(self, Remove)
             Label.Parent = Window;
         end
 
-       Events['CreateButton'] = function(self, Text, Code)
+        Events['CreateButton'] = function(self, Text, Code)
             local Button = Objects.Button:Clone();
             Button.Label.Text = Text;
             Button.Parent = Window;
@@ -155,9 +156,56 @@ Library['Load'] = function(self, Remove)
             end)
         end
 
+        Events['CreateDropdown'] = function(self, Text, Values)
+            local Activated = false;
+            local Menu = Objects.Dropdown:Clone();
+            local CreateSelection = function(Text, Code)
+                local Selection = Menu.Menu[' '].Selection:Clone();
+
+                Selection.Text = Text;
+                Selection.Visible = Menu.Menu.Visible;
+                Selection.MouseButton1Click:Connect(function() Code() end);
+                Selection.Parent = Menu.Menu.Selections;
+            end
+
+            for _, v in next, Values do
+                CreateSelection(v.Text, v.Code);
+            end
+
+            Menu.Background.Label.Text = Text;
+            Menu.Parent = Window;
+            Menu.Background.Button.MouseButton1Click:Connect(function()
+                Activated = not Activated;
+                
+                for _, v in next, Menu.Menu.Selections:GetChildren() do
+                    if v:IsA('TextButton') then
+                        v.Visible = Activated;
+                    end
+                end
+                
+                Menu.Menu.Visible = Activated;
+                Menu.Background.Icon.Rotation = Activated and 180 or 0;
+                Menu.Size = Activated and UDim2.new(1, 0, 0, 130) or UDim2.new(1, 0, 0, 40);
+                Menu.Menu:TweenSize(Activated and UDim2.new(1, 0, 0, 130) or UDim2.new(1, 0, 0, 0), 'InOut', 'Quint', 0.3, true);
+            end)
+        end
+
         return Events;
     end
 
+    Wv['Notify'] = function(self, Message, Length)
+        spawn(function()
+            local Length = toNum(Length) or 4;
+            local Notification = Objects.Notification:Clone();
+    
+            Notification.Main.Label.TextSize = 18
+            Notification.Parent = UI.Notifications
+            Notification.Main.Label.Text = toStr(Message) or 'nil'
+            Notification.Length.Timer:TweenSize(UDim2.new(0, 0, 1, 0), 'Out', 'Linear', Length); wait(Length)
+            Notification:Destroy()
+        end)
+    end
+    
     return Wv;
 end
 
