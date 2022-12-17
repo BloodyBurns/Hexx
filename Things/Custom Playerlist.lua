@@ -83,9 +83,11 @@ plrs.PlayerAdded:Connect(function(v)
 	end
 
 	CreatePlayer(v, v:isFriendsWith(plr.UserId));
+	UI.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
 end)
 
 plrs.PlayerRemoving:Connect(function(v)
+	UI.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
 	if UI.Playerlist.Frame.Players:FindFirstChild(v.Name) then
 		UI.Playerlist.Frame.Players[v.Name]:Destroy();
 	end
