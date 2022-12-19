@@ -91,6 +91,31 @@ AntiBot = function()
             end
         end
     end
+
+    plrs.LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.DescendantAdded:Connect(function(Obj)
+        if Obj:IsA('TextButton') then
+            RenderStepped:Wait();
+            local Message = split(v.Text, ':]');
+            local Player = sub(Message[1], 2, len(Message[1]));
+            local isT = false;
+
+            for _, v2 in next, Content.Name do
+                if match(Player, v2) then
+                    isT = true;
+                    v.Parent.Parent.Visible = false;
+                end
+            end
+
+            if not isT then    
+                for _, v2 in next, Content.Display do
+                    if match(Player, v2) then
+                        isT = true;
+                        v.Parent.Parent.Visible = false;
+                    end
+                end
+            end
+        end
+    end)
 end
 
 return AntiBot;
