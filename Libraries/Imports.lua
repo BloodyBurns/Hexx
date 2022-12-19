@@ -23,11 +23,13 @@ ReplicatedStorage = game:GetService('ReplicatedStorage');
 MarketplaceService = game:GetService('MarketplaceService');
 
 -- // Game Variables
+ThemeProvider = Core:FindFirstChild('ThemeProvider');
 ChatEvents = ReplicatedStorage:FindFirstChild('DefaultChatSystemChatEvents');
 ChatRemote = ChatEvents and ChatEvents.SayMessageRequest;
 MuteRemote = ChatEvents and ChatEvents.MutePlayerRequest;
 UnMuteRemote = ChatEvents and ChatEvents.UnMutePlayerRequest;
 OnMessageRemote = ChatEvents and ChatEvents.OnMessageDoneFiltering;
+TopBarLeftFrame = ThemeProvider and ThemeProvider.TopBarFrame.LeftFrame;
 
 -- // RS Events
 Stepped = RunService.Stepped;
