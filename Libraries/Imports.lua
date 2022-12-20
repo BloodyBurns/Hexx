@@ -91,7 +91,7 @@ isType = function(a, b)
 end
 
 JSON = function(Type, Data)
-    if isType(Data, 'table') and (Type == 'Encode' or Type == 'Decode') then
+    if Data and (Type == 'Encode' or Type == 'Decode') then
         return Type == 'Encode' and HttpService:JSONEncode(Data) or HttpService:JSONDecode(Data);
     end
 end
