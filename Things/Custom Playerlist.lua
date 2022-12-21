@@ -8,7 +8,6 @@ end
 
 local CreatePlayer = function(User, isFriend)
 	local Player = V4mp.Objs.Player:Clone();
-	local IX = maxn(GetPlayers()) > 1 and 47 or 85
 	local Api = 'https://inventory.roblox.com/v1/users/%s/items/GamePass/%d';
 	local Admin = match(game:HttpGet(format(Api, User.UserId, 35748)), 35748) or match(game:HttpGet(format(Api, User.UserId, 66254)), 66254);
 
@@ -16,7 +15,7 @@ local CreatePlayer = function(User, isFriend)
 	Player.User.RichText = true;
 	Player.Icon.Image = pfp(User.UserId);
 	Player.Parent = V4mp.Playerlist.Frame.Players;
-	V4mp.Playerlist.Size = UDim2.new(0, 285, 0, maxn(GetPlayers()) * IX);
+	V4mp.Playerlist.Size = UDim2.new(0, 285, 0, maxn(GetPlayers()) * 47);
 	Player.User.TextColor3 = isFriend and Color3.fromRGB(128, 255, 121) and Color3.new(0, 0.8, 0) or Color3.new(1, 1, 1);
 	Player.User.Text = format('<font color = \'rgb(200, 0, 0)\'>%s</font>%s', Admin and '[ Perm ] ' or '', User.DisplayName);
 end
