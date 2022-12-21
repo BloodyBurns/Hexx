@@ -19,10 +19,6 @@ local CreatePlayer = function(User, isFriend)
 	Player.User.TextColor3 = isFriend and Color3.fromRGB(128, 255, 121) and Color3.new(0, 0.8, 0) or Color3.new(1, 1, 1);
 	Player.User.Text = format('<font color = \'rgb(200, 0, 0)\'>%s</font>%s', Admin and '[ Perm ] ' or '', User.DisplayName);
 
-	Player.MouseButton1Click:Connect(function()
-		setclipboard(User.Name)
-	end)
-
 	Player.MouseEnter:Connect(function()
 		Player.User.Text = concat({'@', User.Name}, '')
 	end)
