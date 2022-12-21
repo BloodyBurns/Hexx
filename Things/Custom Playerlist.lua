@@ -7,16 +7,16 @@ Darken = function(v)
 end
 
 local CreatePlayer = function(User, isFriend)
-    local Player = V4mp.Objs.Player:Clone();
+	local Player = V4mp.Objs.Player:Clone();
 	local Api = 'https://inventory.roblox.com/v1/users/%s/items/GamePass/%d';
 	local Admin = match(game:HttpGet(format(Api, User.UserId, 35748)), 35748) or match(game:HttpGet(format(Api, User.UserId, 66254)), 66254);
 
 	Player.Name = toStr(User);
 	Player.User.RichText = true;
-    Player.Icon.Image = pfp(User.UserId);
-    Player.Parent = V4mp.Playerlist.Frame.Players;
+	Player.Icon.Image = pfp(User.UserId);
+	Player.Parent = V4mp.Playerlist.Frame.Players;
 	V4mp.Playerlist.Size = UDim2.new(0, 285, 0, maxn(GetPlayers()) * 47);
-    Player.User.TextColor3 = isFriend and Color3.fromRGB(128, 255, 121) and Color3.new(0, 0.8, 0) or Color3.new(1, 1, 1);
+	Player.User.TextColor3 = isFriend and Color3.fromRGB(128, 255, 121) and Color3.new(0, 0.8, 0) or Color3.new(1, 1, 1);
 	Player.User.Text = format('<font color = \'rgb(200, 0, 0)\'>%s</font>%s', Admin and '[ Perm ] ' or '', User.DisplayName);
 end
 
@@ -24,16 +24,16 @@ V4mp.Parent = Core;
 StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false);
 V4mp.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
 V4mp.Playerlist.Expand.MouseButton1Click:Connect(function()
-    Open = not Open;
+	Open = not Open;
 	V4mp.Playerlist.Frame.Players.Visible = Open;
-    V4mp.Playerlist.Expand.Rotation = not Open and 180 or 0;
-    V4mp.Playerlist.Frame:TweenSize(not Open and UDim2.new(1, 0, 0.1, 0) or UDim2.new(1, 0, 1, 0), 'InOut', 'Sine', 0.4, true);
+	V4mp.Playerlist.Expand.Rotation = not Open and 180 or 0;
+	V4mp.Playerlist.Frame:TweenSize(not Open and UDim2.new(1, 0, 0.1, 0) or UDim2.new(1, 0, 1, 0), 'InOut', 'Sine', 0.4, true);
 end)
 
 local s1; s1 = InputService.InputBegan:Connect(function(Input, IsTyping)
 	if Input.KeyCode == Enum.KeyCode.Tab and not IsTyping then
-        Show = not Show;
-        V4mp.Playerlist:TweenPosition(Show and UDim2.new(0.84, 0, 0, 15) or UDim2.new(1, 0, 0, 15), 'InOut', 'Sine', 0.5, true);
+		Show = not Show;
+		V4mp.Playerlist:TweenPosition(Show and UDim2.new(0.84, 0, 0, 15) or UDim2.new(1, 0, 0, 15), 'InOut', 'Sine', 0.5, true);
 	end
 end)
 
@@ -48,7 +48,7 @@ end)
 CreatePlayer(plr, false);
 
 for _, v in next, filter(GetPlayers(), plr) do
-    spawn(function() CreatePlayer(v, v:isFriendsWith(plr.UserId)) end);
+	spawn(function() CreatePlayer(v, v:isFriendsWith(plr.UserId)) end);
 end
 
 spawn(function()
