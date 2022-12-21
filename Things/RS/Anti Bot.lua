@@ -35,7 +35,7 @@ AntiBot = function()
 
         Display = {
             'TheAloneSystems', 'sleepinbot', 'sleepnbetter', 'ILuvOven', 'skidbottingera2', 'lostritual and oven are besties', 'LOSTRITUALOWNSYOU', 'prunebot',
-            'Killhousebot', 'MestalicFlungYouLOL'
+            'Killhousebot', 'MestalicFlungYouLOL', 'blowupsASSisLARGE'
         },
     }
 
