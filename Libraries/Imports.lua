@@ -19,6 +19,7 @@ HttpService = game:GetService('HttpService');
 SoundService = game:GetService('SoundService');
 StarterPlayer = game:GetService('StarterPlayer');
 InputService = game:GetService('UserInputService');
+TeleportService = game:GetService('TeleportService');
 ReplicatedStorage = game:GetService('ReplicatedStorage');
 MarketplaceService = game:GetService('MarketplaceService');
 
