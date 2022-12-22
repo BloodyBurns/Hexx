@@ -29,6 +29,7 @@ local CreatePlayer = function(User, isFriend)
 end
 
 V4mp.Parent = Core;
+V4mp.Playerlist.Zindex = 3;
 StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false);
 V4mp.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
 V4mp.Playerlist.Expand.MouseButton1Click:Connect(function()
