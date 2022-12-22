@@ -61,7 +61,6 @@ end
 
 spawn(function()
 	V4mp.Destroying:Wait();
-	print('NIGGA')
 	Disconnect(s1);
 	Disconnect(s3);
 end)
