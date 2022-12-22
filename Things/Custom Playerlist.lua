@@ -45,6 +45,10 @@ local s1; s1 = InputService.InputBegan:Connect(function(Input, IsTyping)
 	end
 end)
 
+local s2; s2 = plrs.PlayerAdded:Connect(function(v)
+	CreatePlayer(v, v:isFriendsWith(plr.UserId))
+end)
+
 local s3; s3 = plrs.PlayerRemoving:Connect(function(v)
 	V4mp.Playerlist.Frame.Size = UDim2.new(1, 0, 0.106 + (maxn(GetPlayers()) * 0.12), 0);
 	V4mp.Playerlist.Label.Text = format('Players: %d', maxn(GetPlayers()));
@@ -62,5 +66,6 @@ end
 spawn(function()
 	V4mp.Destroying:Wait();
 	Disconnect(s1);
+	Disconnect(s2);
 	Disconnect(s3);
 end)
