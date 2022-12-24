@@ -23,6 +23,7 @@ InputService = game:GetService('UserInputService');
 TeleportService = game:GetService('TeleportService');
 ReplicatedStorage = game:GetService('ReplicatedStorage');
 MarketplaceService = game:GetService('MarketplaceService');
+ContextActionService = game:GetService('ContextActionService');
 
 -- // Game Variables
 ThemeProvider = Core:FindFirstChild('ThemeProvider');
