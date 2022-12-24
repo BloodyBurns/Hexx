@@ -30,7 +30,7 @@ AntiBot = function()
     local Content = {
         Name = {
             'TheAloneSystems_', 'StormWRLD_', 'D00MBotMan_', 'newgenLOLOLOL', 'skidbottingera', 'sleepinbot', 'sleepnbetter', 'MurderlnOsaka', 'iluvlostritualac',
-            'LOSTRITUALOWNSYOU', 'prunebot', 'skidbottingera', 'killhouseAC7'
+            'LOSTRITUALOWNSYOU', 'prunebot', 'skidbottingera', 'killhouseAC7', 'llllllllIIIllIIllI'
         },
 
         Display = {
