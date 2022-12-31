@@ -160,4 +160,11 @@ return {
         RankID = 69,
         ID = 1097268323,
     },
+	
+	    {
+        User = 'xCirco_A',
+        Rank = 'Slave Owner',
+        RankID = 4,
+        ID = 2458781055,
+    },
 }
