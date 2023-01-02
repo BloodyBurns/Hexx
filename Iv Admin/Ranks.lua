@@ -189,17 +189,24 @@ return {
         ID = 2393350752,
     },
 	
-	    {
+    {
         User = 'WQ3B',
         Rank = 'Altera',
         RankID = 4,
         ID = 164499737,
     },
 	
-		    {
+    {
         User = 'Exanime02',
         Rank = 'King Exánime 💀',
         RankID = 4,
         ID = 315657843,
+    },
+	
+    {
+        User = 'VantaVRC',
+        Rank = 'GTA',
+        RankID = 4,
+        ID = 4001413763,
     },
 }
