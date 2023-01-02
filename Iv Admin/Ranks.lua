@@ -170,7 +170,7 @@ return {
 	
     {
         User = 'xCirco_A',
-        Rank = 'Slave Owner',
+        Rank = '👑',
         RankID = 4,
         ID = 2458781055,
     },
