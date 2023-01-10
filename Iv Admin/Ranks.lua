@@ -216,4 +216,11 @@ return {
         RankID = 4,
         ID = 4215150250,
     },
+	
+	    {
+        User = 'TeddyUwX',
+        Rank = '🧿',
+        RankID = 4,
+        ID = 2756141815,
+    },
 }
